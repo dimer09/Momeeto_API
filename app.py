@@ -9,7 +9,7 @@ from tempfile import NamedTemporaryFile
 import os
 import pytesseract
 from PIL import Image
-# from transformers import pipeline
+from transformers import pipeline
 
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ CORS(app)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# summarizer = pipeline("summarization")
+summarizer = pipeline("summarization")
 
 def extract_text_from_file(file_stream, file_type):
     text = ""
@@ -67,20 +67,20 @@ def upload_file():
     print(flashcards)
     return jsonify({'flashcards': flashcards})
 
-# @app.route('/summarize', methods=['POST'])
-# def summarize_text():
-#     if 'file' not in request.files:
-#         return 'No file part', 400
+@app.route('/summarize', methods=['POST'])
+def summarize_text():
+    if 'file' not in request.files:
+        return 'No file part', 400
 
-#     file = request.files['file']
-#     file_type = file.filename.split('.')[-1].lower()
-#     text = extract_text_from_file(file.stream, file_type)
+    file = request.files['file']
+    file_type = file.filename.split('.')[-1].lower()
+    text = extract_text_from_file(file.stream, file_type)
     
-#     if not text:
-#         return jsonify({'error': 'No text extracted from file'}), 400
+    if not text:
+        return jsonify({'error': 'No text extracted from file'}), 400
 
-#     summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
-#     return jsonify({'summary': summary[0]['summary_text']})
+    summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
+    return jsonify({'summary': summary[0]['summary_text']})
 
 if __name__ == '__main__':
     app.run(debug=True)
