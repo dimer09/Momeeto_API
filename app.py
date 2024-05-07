@@ -83,4 +83,4 @@ def summarize_text():
     return jsonify({'summary': summary[0]['summary_text']})
 
 if __name__ == '__main__':
-    app.run(debug=False,host='0.0.0.0')
+    app.run(port=5000,debug=False,host='0.0.0.0')
