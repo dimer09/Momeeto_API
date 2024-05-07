@@ -3,6 +3,5 @@ PyPDF2
 docx
 textblob
 flask-cors
-tempfile
 Pillow
 pytesseract
