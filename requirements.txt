@@ -1,7 +1,6 @@
 Flask
 PyPDF2
 docx
-pptx
 textblob
 flask-cors
 tempfile
