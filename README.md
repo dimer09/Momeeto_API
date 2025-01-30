@@ -11,8 +11,6 @@ Cette API basée sur Flask extrait le texte de divers types de fichiers, y compr
 ## Plans futurs
 Migration prévue vers l'API GPT-4 pour améliorer la génération de flashcards et de résumés.
 
-## Usage
-Envoyez des fichiers en POST à `/upload` pour les flashcards et à `/summarize` pour le résumé.
 
 ## Installation
 
